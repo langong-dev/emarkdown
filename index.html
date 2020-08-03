@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Electron Markdown</title>
+    <script src="./jquery.js"></script>
+    <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
+    <script src="./prism.js"></script>
+    <script src="./h.js"></script>
+    <link rel="stylesheet" href="./prism.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous" 
+      onload="renderMathInElement(document.body);"></script>
+       <script>
+$(document).ready(function () { // this need jquery
+  renderMathInElement(document.body, {
+    delimiters: [
+      { left: "$$", right: "$$", display: true },
+      { left: "$", right: "$", display: false },
+      { left: "\\[", right: "\\]", display: true }
+    ]
+  });
+});
+       </script>
+  </head>
+  <body>
+    <div class="pages">
+      <center>
+        <h1>Electron Markdown</h1>
+      </center>
+      <br>
+      <div class="left">
+        <div class="input">
+          <textarea id="textarea" rows="10">Write your markdown here...</textarea>
+        </div>
+        <br>
+        <div class="pages">
+          <span>
+            Made by <a href="https://langong-dev.github.io">LanGong</a> <br>
+            Codehighlight by <a href="https://prismjs.com/">PrismJS</a> <br>
+            Math by <a href="https://katex.org">$\KaTeX$</a>
+          </span>
+        </div>
+      </div>
+      <div class="right">
+        <div id="out"></div>
+      </div>
+    </div>
+    <script>
+      
+$('#textarea').bind('input', function () {
+  var converter = new showdown.Converter(),
+    text      = $("#textarea").val(),
+    html      = converter.makeHtml(text);
+  $("#out").html(html);
+  self.Prism.highlightAll("#out");
+  renderMathInElement(document.body,{
+    delimiters: [
+      { left: "$$", right: "$$", display: true },
+      { left: "$", right: "$", display: false },
+      { left: "\\[", right: "\\]", display: true }
+    ]
+  });
+});
+
+var text = document.getElementById("textarea");
+autoTextarea(text, 5);// 调用
+
+    </script>
+  </body>
+</html>
