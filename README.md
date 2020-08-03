@@ -1,13 +1,7 @@
 # Electron Markdown
 
-## Install
+Demo: https://langong-dev.github.io/emarkdown/
 
-```
-# npm install -g emarkdown
-```
+# Install to your website
 
-## Usage
-
-```
-$ emarkdown
-```
+Clone it to your server.
